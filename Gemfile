@@ -24,7 +24,7 @@ gem 'sprockets-rails'
 gem 'stimulus-rails'
 gem 'strong_migrations'
 gem 'turbo-rails'
-gem 'whenever'
+gem 'whenever', require: false
 gem 'z80_disassembler' # , path: '../z80_disassembler'
 
 group :development do
