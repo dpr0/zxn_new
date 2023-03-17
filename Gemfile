@@ -15,7 +15,7 @@ gem 'omniauth'
 gem 'omniauth-telegram'
 gem 'omniauth-yandex'
 gem 'pg'
-gem 'puma'
+gem 'puma', '4.3.12'
 gem 'rails'
 gem 'redis'
 gem 'sidekiq'
@@ -27,14 +27,10 @@ gem 'turbo-rails'
 gem 'whenever'
 gem 'z80_disassembler' # , path: '../z80_disassembler'
 
-# gem 'bootsnap'
-# gem 'uglifier'
-# gem 'sassc-rails'
-
 group :development do
   gem 'bcrypt_pbkdf'
   gem 'capistrano', require: false
-  gem 'capistrano3-puma', require: false
+  gem 'capistrano3-puma', '4.0.0', require: false
   gem 'capistrano-bundler', require: false
   gem 'capistrano-nvm', require: false
   gem 'capistrano-rails', require: false
