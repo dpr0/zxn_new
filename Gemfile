@@ -1,80 +1,53 @@
-source "https://rubygems.org"
+# frozen_string_literal: true
+
+source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "~> 3.2"
+ruby '~> 3.2'
+gem 'cssbundling-rails'
+gem 'devise'
+gem 'dotenv-rails'
+gem 'image_processing'
+gem 'jbuilder'
+gem 'jsbundling-rails'
+gem 'nokogiri'
+gem 'omniauth'
+gem 'omniauth-telegram'
+gem 'omniauth-yandex'
+gem 'pg'
+gem 'puma'
+gem 'rails'
+gem 'redis'
+gem 'sidekiq'
+gem 'slim-rails'
+gem 'sprockets-rails'
+gem 'stimulus-rails'
+gem 'strong_migrations'
+gem 'turbo-rails'
+gem 'whenever'
+gem 'z80_disassembler' # , path: '../z80_disassembler'
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
-gem "rails", "~> 7.0.4"
-
-# The traditional bundling and transpiling asset pipeline for Rails.
-gem "sprockets-rails", ">= 2.0.0"
-
-# Use postgresql as the database for Active Record
-gem "pg", "~> 1.4"
-
-# Use Puma as the app server
-gem "puma", "~> 6"
-
-# Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
-gem "jsbundling-rails", ">= 1.0.0"
-
-# Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
-gem "turbo-rails", ">= 1.0.0"
-
-# Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
-gem "stimulus-rails", ">= 1.0.0"
-
-# Bundle and process CSS [https://github.com/rails/cssbundling-rails]
-gem "cssbundling-rails", ">= 1.0.0"
-
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem "jbuilder", "~> 2.11"
-
-# Use Redis adapter to run Action Cable in production
-gem "redis", "~> 5.0"
-
-# Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
-# gem "kredis"
-
-# Use Active Model has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
-
-# Use Active Storage variant
-gem "image_processing", ">= 1.2"
-
-gem "strong_migrations"
-gem "sidekiq"
-
-gem "nokogiri", ">= 1.13.9"
-
-group :development, :test do
-  # Start debugger with binding.b [https://github.com/ruby/debug]
-  gem "debug", ">= 1.0.0", platforms: %i[mri mingw x64_mingw]
-  gem "pry-rails"
-  gem "annotate"
-  gem "brakeman"
-  gem "bundler-audit", github: "rubysec/bundler-audit"
-  gem "letter_opener_web", "~> 2.0"
-  gem "standard"
-
-  gem "rspec-rails"
-  gem "factory_bot_rails"
-end
-
-group :test do
-  # Adds support for Capybara system testing and selenium driver
-  gem "capybara", github: "teamcapybara/capybara"
-  gem "cuprite"
-  gem "simplecov", require: false
-end
+# gem 'bootsnap'
+# gem 'uglifier'
+# gem 'sassc-rails'
 
 group :development do
-  # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem "web-console", ">= 4.1.0"
-  # Display performance information such as SQL time and flame graphs for each request in your browser.
-  # Can be configured to work on production as well see: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
-  # gem 'rack-mini-profiler', '~> 2.0'
+  gem 'bcrypt_pbkdf'
+  gem 'capistrano', require: false
+  gem 'capistrano3-puma', require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano-nvm', require: false
+  gem 'capistrano-rails', require: false
+  gem 'capistrano-rbenv', require: false
+  gem 'capistrano-yarn', require: false
+  gem 'debug'
+  gem 'ed25519'
+  gem 'listen'
+  gem 'rubocop'
+  gem 'web-console'
+
+  gem 'annotate'
+  gem 'bundler-audit', github: 'rubysec/bundler-audit'
+  gem 'letter_opener_web'
+  gem 'standard'
 end

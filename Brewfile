@@ -1,15 +1,17 @@
+# frozen_string_literal: true
+
 # Redis - For ActionCable support (and Sidekiq, caching, etc)
-brew "redis"
+brew 'redis'
 
 # PostgreSQL - brew install postgresql
-brew "postgresql@14"
+brew 'postgresql@14'
 
 # Overmind (requires tmux)
-brew "tmux"
-brew "overmind"
+brew 'tmux'
+brew 'overmind'
 
 # libvips - for processing images (avatars, file uploads, etc)
-brew "vips"
+brew 'vips'
 
 # Yarn - for installing Javascript dependencies
-brew "yarn"
+brew 'yarn'

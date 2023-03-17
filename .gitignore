@@ -37,3 +37,11 @@ yarn-error.log
 
 # Ignore simplecov output
 /coverage
+
+/.idea/
+.idea/
+.DS_Store
+ebash
+dump.rdb
+.idea/modules.xml
+.env
