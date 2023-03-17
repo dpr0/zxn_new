@@ -1,0 +1,53 @@
+section.hero.is-lower-alpha
+  .hero-body
+    .container
+      h1.title.is-1
+        = link_to 'ZXN.RU', root_path
+      h2.subtitle
+        | Get the retro-coding started in your browser right now!&nbsp
+      h2.subtitle
+        | This is a collection of useful online tools for Sinclair ZX Spectrum and Z80 assembly development.
+      h2.subtitle
+        - if current_user
+          span
+            .nav-link = current_user.email.present? ? current_user.email : current_user.phone
+          span &nbsp
+          span = link_to 'Sign Out', destroy_user_session_path, class: 'nav-link', method: :delete
+        - else
+          span = link_to 'Sign In', new_user_session_path
+
+section#parallax-computers.hero
+  .hero-body
+    .container
+      .columns.is-centered.is-multiline
+        .column.is-4
+          .card
+            header.card-header
+              p.card-header-title
+                | File to HEX / DEC
+            .card-content
+              .content
+                p Converts a binary file (server-side, your data is sent to server) to hex/decimal code. Input size is limited to 1 MB to meet our resources consumption. Please refer to offline tools to process larger files. Output result can be saved as text file or copied to clipboard in one click.
+            footer.card-footer
+              = link_to 'HEX', converter_hex_path, class: 'card-footer-item'
+              = link_to 'DEC', converter_dec_path, class: 'card-footer-item'
+        .column.is-4
+          .card
+            header.card-header
+              p.card-header-title
+                | Z80 Disassembler/Compiler
+            .card-content
+              .content
+                | Simple server-side disassembler for any binary file into Zilog Z80 assembler instructions set. You can upload data and define ORG/START addresses. For Hobeta files input ORG address is autodetected. Output is formatted with SjASMPlus syntaxes and is ready to be compiled out of the box.
+            footer.card-footer
+              = link_to 'Disassembler', disasm_path, class: 'card-footer-item'
+        .column.is-4
+          .card
+            header.card-header
+              p.card-header-title
+                | ZX Spectrum Emulator
+            .card-content
+              .content
+                | JVGS v1.1.4 provides you with pure JavaScript client-side ZX Spectrum 48/128 emulation in current browser tab. Please expect this one-click solution to be a bit slow and requires some resources.
+            footer.card-footer
+              = link_to 'Emulator', emulator_path, class: 'card-footer-item'

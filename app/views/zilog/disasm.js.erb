@@ -1,0 +1,15 @@
+$('.file').html("<%= j render partial: 'disasm' %>");
+$('#org').val(<%= @org %>);
+$('#file_size').html(<%= @file_size %> + ' bytes');
+$('#log').empty();
+
+
+ace.edit("textarea", {
+    mode: "./assembly_z80",
+    theme: "ace-builds/src-noconflict/monokai",
+    maxLines: 50,
+    minLines: 20,
+    fontSize: 12,
+    autoScrollEditorIntoView: true,
+    copyWithEmptySelection: true
+});

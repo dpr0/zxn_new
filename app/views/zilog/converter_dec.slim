@@ -1,0 +1,81 @@
+section.hero.is-lower-alpha
+  .hero-body
+    .container.has-text-white
+      h1.title.is-1
+        = link_to 'ZXN.RU', root_path
+      .columns.is-centered
+        .column.is-3
+          = label_tag :splitter, 'Row size:'
+          span &nbsp
+          span#row_size
+          .d-flex
+            form.range-field.w-100
+              input.form-range max="#{@values.size - 1}" min="0" type="range" id="splitter" value="4"
+          .text-center
+            sup = "1..16, #{@values[16..].join(", ")}"
+        .column.is-3
+          = 'Define:'
+          .control
+            - ZilogController::BASIC.each_with_index do |define, index|
+              p
+                label.radio
+                  label.radio
+                    = radio_button_tag(:define, define, define == 'DATA', class: 'form-check-input')
+                    | &nbsp
+                    = define
+        .column.is-3
+          = 'Separator:'
+          .control
+            - ZilogController::SEPARATOR[1..].each_with_index do |separator, index|
+              p
+                label.radio
+                  = radio_button_tag(:separator, separator, separator == ',', class: 'form-check-input')
+                  | &nbsp
+                  = separator
+        .column.is-3
+          = label_tag :file, 'File:'
+          span &nbsp
+          span#file_size
+          p = file_field_tag :file, class: 'form-control'
+
+section#parallax-computers.hero
+  .hero-body
+    .container
+      .file
+        = render partial: 'converter'
+
+javascript:
+    var input = $('#splitter');
+    function reload() {
+        let formData = new FormData();
+        formData.append('file', $('#file')[0].files[0]);
+        formData.append('splitter', values[input.val()]);
+        formData.append('define', $('input[name=define]:checked').val() || '');
+        formData.append('separator', $('input[name=separator]:checked').val() || ', ');
+        $.ajax({
+            url: "#{converter_dec_path}",
+            type: 'POST',
+            data: formData,
+            async: false,
+            cache: false,
+            contentType: false,
+            enctype: 'multipart/form-data',
+            processData: false
+        })
+    }
+
+    var values = #{@values};
+    $('#row_size').html(values[input.val()])
+    input.change(() => $('#row_size').html( values[input.val()] ));
+    $('select').change( () => reload() );
+    $('input' ).change( () => reload() );
+
+    function copy_to_clipboard() {
+        $("#textarea").select();
+        document.execCommand("copy");
+    }
+
+    function download_txt(str) {
+        var blob = new Blob([$("#textarea").val()], {type: "text/plain;charset=utf-8"});
+        saveAs(blob, 'file_' + Date.now() + ".asm");
+    }

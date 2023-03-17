@@ -1,0 +1,11 @@
+.columns.is-centered
+  .column.is-12
+    .buttons.has-addons
+      / - if params[:action] == 'disasm'
+      = link_to 'Compile', '#', class: 'button is-large is-danger is-rounded', onclick: 'compile_txt()'
+      / = link_to 'Run .TAP', '#', class: 'button is-primary', id: :fff
+      = link_to 'Demo', disasm_path(demo: true), class: 'button is-large is-warning is-rounded', remote: true
+      = link_to 'Download', '#', class: 'button is-large is-success is-rounded', onclick: 'download_txt()'
+      = link_to 'Copy to clipboard', '#', class: 'button is-large is-info is-rounded', onclick: 'copy_to_clipboard()'
+    br
+    textarea.textarea#textarea rows="38" = @result

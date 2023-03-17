@@ -1,0 +1,31 @@
+section.hero.is-lower-alpha
+  .hero-body
+    .container.has-text-white
+      h1.title.is-1
+        = link_to 'ZXN.RU', root_path
+      .columns.is-centered
+        .column.is-4
+          p
+            = label_tag :files_selector, 'ФАЙЛ:'
+            = file_field_tag :files_selector, accept: '.zip,.trd,.scl,.tap,.tzx,.z80,.rom', class: 'form-control'
+        .column.is-9
+          .btn-group-sm
+            = link_to 'Reset ZX Spectrum', '#', class: 'btn btn-xs btn-outline-primary', id: :gogogo
+
+section#parallax-computers.hero
+  .hero-body
+    .container
+      #jsspeccy
+    .container
+      #game.right-contains
+        div style=('overflow-x: hidden;')
+          #playground style=('width:2540px;position:relative;overflow-x: hidden; overflow-y: hidden;left:0px;')
+            div style='width:1000px;float:left;'
+              #information
+                .play_button
+                  | .
+            div style='width:20px;float:left;'  &nbsp;
+            .appdat_inline_block style='width:500px;float:left;'
+              div style='width:864px;float:left;'
+                #fscontainer
+                  #applet_place.shadow style=('width: 864px; height: 700px; position: relative; margin: auto; float: none;')

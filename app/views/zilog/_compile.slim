@@ -1,0 +1,10 @@
+div
+  p
+    - @logs.each do |log|
+      div = log
+  - if @compiled
+    ul
+      li= link_to 'download .tap',         download_tap_url
+      li= link_to 'download .sna',         download_sna_url
+      li= link_to 'download .$C (Hobeta)', download_hob_url
+      li= link_to 'download .bin (code)',  download_cod_url

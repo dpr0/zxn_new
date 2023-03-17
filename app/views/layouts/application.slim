@@ -1,0 +1,54 @@
+doctype html
+html
+  head
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag 'application', 'data-turbo-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbo-track': 'reload', defer: true
+    = favicon_link_tag asset_path('favicon-zxn.png')
+    = yield :head
+
+    title ZX Spectrum & Z80 online tools | ZXN.RU
+    link href="/public/favicon.ico" rel=('shortcut icon') type="image/x-icon"
+    link href="https://zxn.ru"     rel="canonical"
+    meta name="description"        content="Collection of useful online tools for retro-coding on 8bit computers"
+    meta name="twitter:card"       content="summary_large_image"
+    meta property="og:url"         content="https://zxn.ru/"
+    meta property="og:site_name"   content="ZX Spectrum & Z80 online tools"
+    meta property="og:type"        content="website"
+    meta property="og:title"       content="ZX Spectrum & Z80 online development tools"
+    meta property="og:locale"      content="en_EN"
+    meta property="og:description" content="Z80 disassembly, BIN to HEX, online ZX Spectrum emulator and other magic..."
+    meta property="og:image"       content="#{asset_path('og-image-zxn.png')}"
+
+  = yield
+
+  footer.footer
+    .content.has-text-centered
+      div
+        a.strong href='https://zxn.ru' zxn.ru
+        | &nbsp
+        | by
+        | &nbsp
+        a.strong href='https://rmda.su' RMDA
+      div
+        a href='https://t.me/dvitvitskiy' Telegram
+        | &nbsp; / &nbsp;
+        a href="mailto:dvitvitskiy.pro@gmail.com" Email
+      div
+        | The source code is licensed
+        a href="http://opensource.org/licenses/mit-license.php"  MIT
+        | &nbsp
+        | Copyright &copy;
+        = " 2019-#{Time.now.year}"
+
+javascript:
+    if ("#{Rails.env}" === 'production') {
+        (function (m, e, t, r, i, k, a) {
+            m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
+            m[i].l = 1 * new Date();
+            k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+        })
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+        ym(81052243, "init", {clickmap: true, trackLinks: true, accurateTrackBounce: true, webvisor: true});
+    }

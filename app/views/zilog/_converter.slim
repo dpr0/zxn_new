@@ -1,0 +1,9 @@
+.columns.is-centered
+  .column.is-12
+    .buttons.has-addons
+      = link_to '', '#', class: 'button is-large is-danger'
+      = link_to '', '#', class: 'button is-large is-warning'
+      = link_to 'Copy to clipboard', '#', class: 'button is-large is-info', onclick: 'copy_to_clipboard()'
+      = link_to 'Download', '#', class: 'button is-large is-success', onclick: 'download_txt()'
+    br
+    textarea.textarea#textarea rows="25" = @result

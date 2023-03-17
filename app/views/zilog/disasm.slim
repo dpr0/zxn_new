@@ -1,0 +1,145 @@
+section.hero.is-lower-alpha
+  .hero-body
+    .container.has-text-white
+      h1.title.is-1
+        = link_to 'ZXN.RU', root_path
+      .columns.is-centered
+        .column.is-4
+          p
+            div = label_tag :org, 'ORG:'
+            = number_field_tag :org, @org, min: 0, max: 65535, class: 'form-control'
+          p
+            .columns.is-centered
+              - (1..4).each do |i|
+                .column.is-3
+                  = link_to '#', id: "inc_s#{i}", onclick: ("change('s#{i}', '>'); return false;") do
+                    i.fas.fa-caret-up
+            .columns.is-centered
+              - (1..4).each do |i|
+                .column.is-3
+                  = select_tag "s#{i}", options_for_select((0..9).to_a + ('A'..'F').to_a, i==1 ? 8 : 0), id: "s#{i}", include_blank: false
+            .columns.is-centered
+              - (1..4).each do |i|
+                .column.is-3
+                  = link_to '#', id: "dec_s#{i}", onclick: ("change('s#{i}', '<'); return false;") do
+                    i.fas.fa-caret-down
+            = text_field_tag :org_hex, "##{@org.to_s(16)}", class: 'form-control', placeholder: '#'
+        .column.is-4
+          p
+            = label_tag :file, 'File:'
+            span &nbsp
+            span#file_size
+            = file_field_tag :file, class: 'form-control'
+        .column.is-4
+          p
+            #log
+
+section#parallax-computers.hero
+  .hero-body
+    .container
+      .file
+        = render partial: 'disasm'
+
+javascript:
+
+    function change(i, x) {
+        var ddl = document.getElementById(i);
+        if (x === '<' && ddl.selectedIndex === 0) {
+            ddl.selectedIndex = 15
+        } else if (x === '>' && ddl.selectedIndex === 15) {
+            ddl.selectedIndex = 0
+        } else {
+            ddl.selectedIndex = x === '>' ? ddl.selectedIndex + 1 : ddl.selectedIndex - 1
+        }
+    }
+
+    function reload() {
+        let formData = new FormData();
+        formData.append('file', $('#file')[0].files[0]);
+        formData.append('org',  $('#org').val());
+        if ($('#file')[0].files[0]) {
+            $.ajax({
+                url: "#{disasm_path}",
+                type: 'POST',
+                data: formData,
+                async: false,
+                cache: false,
+                contentType: false,
+                enctype: 'multipart/form-data',
+                processData: false
+            });
+        }
+    }
+
+    $('select').change(() => change_hex());
+    $('#inc_s1').click(() => change_hex());
+    $('#dec_s1').click(() => change_hex());
+    $('#inc_s2').click(() => change_hex());
+    $('#dec_s2').click(() => change_hex());
+    $('#inc_s3').click(() => change_hex());
+    $('#dec_s3').click(() => change_hex());
+    $('#inc_s4').click(() => change_hex());
+    $('#dec_s4').click(() => change_hex());
+
+    function change_hex() {
+        let z1 = parseInt('0x' + $('#s1').val(), 16)
+        let z2 = parseInt('0x' + $('#s2').val(), 16)
+        let z3 = parseInt('0x' + $('#s3').val(), 16)
+        let z4 = parseInt('0x' + $('#s4').val(), 16)
+        let zz = z1 * 4096 + z2 * 256 + z3 * 16 + z4
+        $('#org').val(zz)
+        $('#org_hex').val('#' + $('#s1').val() + $('#s2').val() + $('#s3').val() + $('#s4').val())
+        reload()
+    }
+
+    $('input[id="org_hex"]').change(() => {
+        let hex = $('#org_hex').val().split('#')[1];
+        $('#org').val(parseInt('0x' + hex, 16))
+        reload()
+    });
+    $('input[id="org"]').change(() => {
+        let num = parseInt($('#org').val(),10).toString(16)
+        $('#org_hex').val('#' + num)
+        $("#s1")[0].selectedIndex = num[0]
+        $("#s2")[0].selectedIndex = parseInt('0x' + num[1], 16)
+        $("#s3")[0].selectedIndex = parseInt('0x' + num[2], 16)
+        $("#s4")[0].selectedIndex = parseInt('0x' + num[3], 16)
+        reload()
+    });
+
+    $('#file').change(() => reload());
+
+    function copy_to_clipboard() {
+        let textarea = $('#textarea');
+        textarea.val(editor.getValue());
+        textarea.select();
+        document.execCommand("copy");
+    }
+
+    function download_txt() {
+        var blob = new Blob([editor.getValue()], {type: "text/plain;charset=utf-8"});
+        saveAs(blob, 'file_' + Date.now() + ".asm");
+    }
+
+    function compile_txt() {
+        let formData = new FormData();
+        formData.append('file', editor.getValue());
+        $.ajax({
+            url: "#{compile_path}",
+            type: 'POST',
+            data: formData,
+            async: false,
+            cache: false,
+            contentType: false,
+            enctype: 'multipart/form-data',
+            processData: false,
+            success: (file) => {
+                // debugger
+                // const bytes = new Uint8Array(file.length);
+                // let z = bytes.map((byte, i) => file.charCodeAt(i));
+                // z.length
+                // var blob = new Blob([file], {type: "multipart/form-data"});
+                // saveAs(blob, 'disasm_' + Date.now() + ".tap");
+            }
+        });
+    }
