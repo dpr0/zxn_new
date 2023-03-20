@@ -30,7 +30,7 @@ gem 'z80_disassembler' # , path: '../z80_disassembler'
 group :development do
   gem 'bcrypt_pbkdf'
   gem 'capistrano', require: false
-  gem 'capistrano3-puma', '4.0.0', require: false
+  gem 'capistrano3-puma', '5.2.0', require: false
   gem 'capistrano-bundler', require: false
   gem 'capistrano-nvm', require: false
   gem 'capistrano-rails', require: false
