@@ -12,17 +12,18 @@ import jquery from 'jquery'
 window.jQuery = jquery
 window.$ = jquery
 
+require('./assembly_z80')
+// require('ace-builds/src-noconflict/theme-monokai')
+// require('ace-builds')
 
-// import('./jvgsc')
-
-// require("./jsspeccy")
-// import 'popper.js'
+import('./jvgsc')
+// require('./jsspeccy/jsspeccy')
 import { saveAs } from 'file-saver'
-// import 'jsspeccy'
-// JSSpeccy(document.getElementById('jsspeccy'))
 
 Rails.start()
 // ActiveStorage.start()
+// let emu = JSSpeccy(document.getElementById('jsspeccy'), { zoom: 2, machine: 48 })
+// emu.openFileDialog();
 
 // var editor = ace.edit("textarea");
 // editor.setTheme("ace/theme/monokai");
@@ -31,15 +32,13 @@ Rails.start()
 //     autoScrollEditorIntoView: true,
 //     copyWithEmptySelection: true,
 // });
-require('./assembly_z80')
-require('ace-builds/src-noconflict/theme-monokai')
-
-ace.edit("textarea", {
-  mode: "./assembly_z80",
-  theme: "ace-builds/src-noconflict/monokai",
-  maxLines: 50,
-  minLines: 20,
-  fontSize: 12,
-  autoScrollEditorIntoView: true,
-  copyWithEmptySelection: true
-});
+//
+// ace.edit("textarea", {
+//   mode: "ace-builds/src/assembly_x86",
+//   theme: "ace-builds/src/monokai",
+//   maxLines: 50,
+//   minLines: 20,
+//   fontSize: 12,
+//   autoScrollEditorIntoView: true,
+//   copyWithEmptySelection: true
+// });

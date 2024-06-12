@@ -40,10 +40,5 @@ group :development do
   gem 'ed25519'
   gem 'listen'
   gem 'rubocop'
-  gem 'web-console'
-
-  gem 'annotate'
-  gem 'bundler-audit', github: 'rubysec/bundler-audit'
   gem 'letter_opener_web'
-  gem 'standard'
 end

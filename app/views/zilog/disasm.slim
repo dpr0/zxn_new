@@ -2,7 +2,7 @@ section.hero.is-lower-alpha
   .hero-body
     .container.has-text-white
       h1.title.is-1
-        = link_to 'ZXN.RU', root_path
+        = link_to 'zxasm.ru', root_path
       .columns.is-centered
         .column.is-4
           p
@@ -111,6 +111,7 @@ javascript:
 
     function copy_to_clipboard() {
         let textarea = $('#textarea');
+        debugger
         textarea.val(editor.getValue());
         textarea.select();
         document.execCommand("copy");

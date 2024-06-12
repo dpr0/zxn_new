@@ -2,7 +2,7 @@
 
 lock '3.17.2'
 
-server 'zxn.ru', port: 2222, roles: %w(app db web), primary: true
+server 'zxasm.ru', port: 2222, roles: %w(app db web), primary: true
 
 set :rbenv_ruby,      '3.2.1'
 set :application,     'zxn'
