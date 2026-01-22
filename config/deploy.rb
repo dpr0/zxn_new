@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-lock '3.19.2'
+lock '3.20.0'
 
-server 'zxasm.ru', port: 2222, roles: %w(app db web), primary: true
+server '185.228.114.69', port: 2222, roles: %w(app db web), primary: true
 
 set :rbenv_ruby,      '3.2.1'
 set :application,     'zxn'
